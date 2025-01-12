@@ -65,6 +65,8 @@ body {
   .category-list {
     display: none; /* Initially hide the category list */
     position: absolute;
+    top: 100%; /* Position directly below the parent */
+    left: 0;
     background-color: #333;
     margin-top: 5px;
     padding: 10px;
@@ -81,12 +83,14 @@ body {
     cursor: pointer;
     border-radius: 4px;
 }
-
+.categories-item {
+    position: relative; /* Make the parent position-relative for dropdown positioning */
+}   
 .category-list li:hover {
     background-color: #ddd; 
 }
 
-.categories-item:hover .category-list {
+.categories-item:hover .category-list,.category-list:hover   {
     display: block; /* Show the category list when hovering over the parent */
 }
   
@@ -111,6 +115,13 @@ body {
     min-height: 500px;
     border:solid blue;
 }
+.mainContent-grid{
+    display :flex;
+    justify-content: center;
+    gap:20px;
+    flex-wrap: wrap;
+    border:solid green;
+}
 .categories {
     padding: 20px;
     text-align: center;
@@ -122,11 +133,11 @@ body {
     margin-top: 20px;
   }
   
-  .category-card {
+  .category-item {
     background: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
-    width: 150px;
+    width: 200px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
@@ -140,4 +151,20 @@ body {
     bottom: 0;
     width: 100%;
     border:solid red;
+}
+
+.product-Ele-Card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.product-Ele-Card img {
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
 }
