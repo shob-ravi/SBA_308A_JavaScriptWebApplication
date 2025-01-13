@@ -1,9 +1,12 @@
 export async function filterProduct(searchText) {
     try {
         const productResults = await getProducts();
-        console.log('productResults:' + JSON.stringify(productResults));
-        const result = productResults.find(a => a.title.includes(searchText) || a.description.includes(searchText));
+        const result = productResults.filter(a => 
+            a.title.toLowerCase().includes(searchText) || 
+            a.description.toLowerCase().includes(searchText)
+        );
         console.log("RESULT::" + result);
+        return result;
     } catch (error) {
         console.log("Error in filterProduct:" + error);
     }

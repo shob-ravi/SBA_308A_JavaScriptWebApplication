@@ -40,11 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function getCategories() {
-        const category_list = await fetch('https://fakestoreapi.com/products/categories');
-        const category_list_result = await category_list.json();
-        console.log('category_list:' + category_list_result);
+        try {
+            // return ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];
+            const category_list = await fetch('https://fakestoreapi.com/products/categories');
+            if (!category_list.ok) throw new Error("Failed to fetch categories.");
+            const category_list_result = await category_list.json();
+            console.log('category_list:' + category_list_result);
+            if (category_list_result.length==0) {return ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];}
+            else {return category_list_result;}
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+            return [];  // Return an empty array in case of error
 
-        return category_list_result;
+        }
+
     }
     //loadCategories();
     async function fetchProducts(element) {
@@ -65,13 +74,17 @@ const btnSearchEl = document.getElementById('btnSearch');
 btnSearchEl.addEventListener('click', () => {
     const searchText = searchBarEl.value;
     console.log("searchText:" + searchText);
-    if (searchText)
-        searchFunction();
+    if (searchText) {
+        searchFunction(searchText.toLowerCase());
+    }
+
 });
 
-function searchFunction(searchText) {
+async function searchFunction(searchText) {
     console.log('inside btn search');
-    filProd.filterProduct(searchText);
+    const results = await filProd.filterProduct(searchText);
+    console.log("results:::" + results);
+    disProd.displayProducts(results);
 }
 
 

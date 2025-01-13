@@ -7,8 +7,10 @@
 }
 
 body {
-    font-family: "Sour Gummy", serif;
-    background-color: #f4f4f4;
+    font-family: "Poppins", serif;
+    /* background-color: #f4f4f4; */
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 /* Navigation Bar Styles */
@@ -16,9 +18,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #1e1e1e;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    /* background-color: #333;
+    color: white;
+    padding: 10px 20px;  */
 }
 
 .Navlist {
@@ -30,14 +36,14 @@ body {
     
         display: flex;
         align-items: center;
-        justify-content: flex-start; /* Align left items to the left */
-        flex-grow: 1; /* Ensures the left items take up remaining space */
+        justify-content: flex-start; 
+        flex-grow: 1; 
     }
 
 .NavTabRight {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Align right items to the right */
+    justify-content: flex-end; 
 }
 
 .NavTabLeft li,
@@ -49,8 +55,8 @@ body {
 .NavTabRight a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 14px;
+    /* padding: 10px; */
 }
 
 .NavTabLeft a:hover,
@@ -67,8 +73,8 @@ body {
     display: none; /* Initially hide the category list */
     position: absolute;
     top: 100%; /* Position directly below the parent */
-    left: 0;
-    background-color: #333;
+    left: 0;   
+    background-color: #333; 
     margin-top: 5px;
     padding: 10px;
     list-style-type: none;
@@ -118,33 +124,35 @@ body {
     padding: 20px;
     background-color: #f4f4f4;
     min-height: 500px;
-    border:solid blue;
+    /* border:solid blue; */
     /* flex-grow: 1; */
 }
-.mainContent-grid{
+
+.mainContent-grid img:hover {
+    transform: scale(1.05);
+}
+ .mainContent-grid{
     display :flex;
     justify-content: center;
     gap:20px;
     flex-wrap: wrap;
     padding: 20px;
-    border:solid green;
+    /* border:solid green; */
 }
-.mainContent-grid img {
-    width: 25%; /* Makes the images responsive */
-    /*max-width: 150px; /* Limit the size of images */
-    /*height: 150px; /* Keep aspect ratio intact */
+ .mainContent-grid img {
+    width: 25%;   
     object-fit: contain;
     margin-bottom: 10px;
     max-width: 100%;
     height: 250px;
-}
+}  
 .imagesContainer{
     display:flex;
     justify-content: center;
     gap: 20px;
     /* flex-wrap: wrap; */
     padding: 20px;
-    border:solid black;
+    /* border:solid black; */
     margin: 1em;
 }
 .imagesContainer img{
@@ -153,11 +161,14 @@ body {
     width:25%;
     height: auto;
 }
+.imagesContainer img:hover {
+    transform: scale(1.05);
+}
 .categories {
     margin-top: 1em;;
     padding: 20px;
     text-align: center;
-    border:solid brown;
+    /* border:solid brown; */
   }
 .category-grid {
     display: flex;
@@ -167,13 +178,36 @@ body {
   }
   
   .category-item {
+    /* background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; */
     background: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
     width: 200px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+}
+
+/* .category-item:hover {
+    transform: scale(1.05);
+} */
+  h1.explore-heading {
+    text-align: center;
+    color: #1E90FF; /* Use a bright blue color */
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; /* Makes the text bolder */
+    font-size: 36px; /* Increases font size */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    margin: 20px 0;
+    transition: color 0.3s ease;
+}
+
+h1.explore-heading:hover {
+    color: #FF6347; /* Changes color on hover to a different shade */
+}
 /* Footer Styles */
 .footer {
     margin-top: 2em;
@@ -184,14 +218,14 @@ body {
     position: relative;
     bottom: 0;
     width: 100%;
-    border:solid red;
+    /* border:solid red; */
 }
 .footer a{
     color:white;
 }
 
 .product-Ele-Card {
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; 
     border-radius: 8px;
     padding: 15px;
     width: 200px;
