@@ -8,6 +8,7 @@
 
 body {
     font-family: "Sour Gummy", serif;
+    background-color: #f4f4f4;
 }
 
 /* Navigation Bar Styles */
@@ -114,17 +115,30 @@ body {
     background-color: #f4f4f4;
     min-height: 500px;
     border:solid blue;
+    /* flex-grow: 1; */
 }
 .mainContent-grid{
     display :flex;
     justify-content: center;
     gap:20px;
     flex-wrap: wrap;
+    padding: 20px;
     border:solid green;
 }
+.mainContent-grid img {
+    width: 250px; /* Makes the images responsive */
+    /*max-width: 150px; /* Limit the size of images */
+    /*height: 150px; /* Keep aspect ratio intact */
+    object-fit: contain;
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: 250px;
+}
 .categories {
+    margin-top: 1em;;
     padding: 20px;
     text-align: center;
+    border:solid brown;
   }
 .category-grid {
     display: flex;
@@ -143,14 +157,18 @@ body {
   }
 /* Footer Styles */
 .footer {
+    margin-top: 2em;
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 40px;
     position: relative;
     bottom: 0;
     width: 100%;
     border:solid red;
+}
+.footer a{
+    color:white;
 }
 
 .product-Ele-Card {

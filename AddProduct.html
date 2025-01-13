@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Submission</title>
+    <link rel="stylesheet" href="AddProduct.css">
+  </head>
+  <body>
+    <div class="navBar">
+        <!-- <ul class="Navlist">                -->
+            <div class="NavTabLeft">
+                <li> <a href="index.html">HOME</a></li>
+            </div>
+        
+      </div>
+    <h1>Add Product</h1>
+    <div class="form-container">
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required />
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required />
+        <!-- <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" required /> -->
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="electronics">Electronics</option>
+          <option value="jewelery">Jewelry</option>
+          <option value="men's clothing">Men's Clothing</option>
+          <option value="women's clothing">Women's Clothing</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="AddProduct.js"></script>
+  </body>
+</html>
