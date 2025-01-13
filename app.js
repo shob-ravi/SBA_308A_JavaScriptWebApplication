@@ -6,6 +6,7 @@ const searchBarEl = document.querySelector(".search-bar");
 document.addEventListener('DOMContentLoaded', () => {
     const categoryItemsEl = document.querySelector(".categories-item");
     const categorylistEl = document.getElementById("category-list");
+    const fragment = document.createDocumentFragment();
 
     categoryItemsEl.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -35,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
             listEl.addEventListener('click', () => {
                 fetchProducts(element);
             })
-            categorylistEl.appendChild(listEl);
-
+            fragment.appendChild(listEl);
         });
+        categorylistEl.appendChild(fragment);
     }
 
     
