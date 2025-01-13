@@ -1,7 +1,7 @@
 // import {dis_prod} from './DisplayProducts.js';
 import * as disProd from "./DisplayProducts.js";
 import * as filProd from "./SearchProduct.js";
-
+let categoriesCache = null;
 const searchBarEl = document.querySelector(".search-bar");
 document.addEventListener('DOMContentLoaded', () => {
     const categoryItemsEl = document.querySelector(".categories-item");
@@ -23,12 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // const mainContentGridEl =document.querySelector(".mainContent-grid");
-
+    
     async function loadCategories() {
         categorylistEl.innerHTML = '';
-        const results = await getCategories();
-        console.log('results:' + results);
-        results.forEach(element => {
+        // const results = await getCategories();
+        const categories = await getCategories();
+        console.log('categories:' + categories);
+        categories.forEach(element => {
             const listEl = document.createElement('li');
             listEl.textContent = element;
             listEl.addEventListener('click', () => {
@@ -39,33 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    async function getCategories() {
-        try {
-            // return ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];
-            const category_list = await fetch('https://fakestoreapi.com/products/categories');
-            if (!category_list.ok) throw new Error("Failed to fetch categories.");
-            const category_list_result = await category_list.json();
-            console.log('category_list:' + category_list_result);
-            if (category_list_result.length==0) {return ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];}
-            else {return category_list_result;}
-        } catch (error) {
-            console.error("Error fetching categories:", error);
-            return [];  // Return an empty array in case of error
-
-        }
-
-    }
+    
     //loadCategories();
+    let productCache = {};
     async function fetchProducts(element) {
         // console.log('element:' +element);
-        const product_list = await fetch('https://fakestoreapi.com/products/category/' + element)
-        console.log(product_list);
-        const product_list_result = await product_list.json();
-
-        console.log('product_list:' + product_list_result);
-        // const product_list_final_result=JSON.stringify(product_list_result)
-
-        disProd.displayProducts(product_list_result);
+        if (productCache[element]){
+            disProd.displayProducts(productCache[element]);
+            return;
+        }
+        try {
+            const product_list = await fetch('https://fakestoreapi.com/products/category/' + element)
+            console.log(product_list);
+            const product_list_result = await product_list.json();
+            productCache[element] = product_list_result;  // Cache the fetched products
+            console.log('product_list:' + product_list_result);
+            // const product_list_final_result=JSON.stringify(product_list_result)
+    
+            disProd.displayProducts(product_list_result);  
+        } catch (error) {
+            console.log("Error in fetching products:" +error);
+        }
+        
     }
 })
 
@@ -85,6 +81,30 @@ async function searchFunction(searchText) {
     const results = await filProd.filterProduct(searchText);
     console.log("results:::" + results);
     disProd.displayProducts(results);
+}
+async function getCategories() {
+    try {
+        
+        if (categoriesCache)
+        { return categoriesCache;
+
+        }
+        const category_list = await fetch('https://fakestoreapi.com/products/categories');
+        if (!category_list.ok) throw new Error("Failed to fetch categories.");
+        const category_list_result = await category_list.json();
+        console.log('category_list:' + category_list_result);
+        categoriesCache = category_list_result.length > 0 ? category_list_result : ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];
+        // if (category_list_result.length==0) {return ["Electronics", "Jewelry", "Men's Clothing", "Women's Clothing"];}
+        // else {return category_list_result;}
+        return categoriesCache;
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+        // return [];  // Return an empty array in case of error
+        categoriesCache = [];  // Return empty cache on error
+        return categoriesCache;
+
+    }
+
 }
 
 
